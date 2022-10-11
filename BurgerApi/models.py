@@ -100,7 +100,7 @@ class CustomerDetail(models.Model):
 
 class Order(models.Model):
     user = models.ForeignKey(UserProfile, on_delete=models.CASCADE, blank=True)
-    customer = models.ManyToManyField(CustomerDetail, blank=True)
+    customerDetail = models.ForeignKey(CustomerDetail, on_delete=models.CASCADE)
     products = models.ForeignKey(Product, on_delete=models.CASCADE, blank=True)
     orderTime = models.DateTimeField(auto_now_add=True)
 
