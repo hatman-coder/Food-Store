@@ -1,12 +1,9 @@
-from email.policy import default
-from enum import unique
-from msilib.schema import SelfReg
 from django.db import models
 from multiselectfield import MultiSelectField
-from django.contrib.auth.models import (AbstractBaseUser, 
-                                        BaseUserManager, 
+from django.contrib.auth.models import (AbstractBaseUser,
+                                        BaseUserManager,
                                         PermissionsMixin)
-from django.utils.translation import gettext_lazy as _
+
 
 class UserProfileManager(BaseUserManager):
     def create_user(self, email, password=None):
@@ -27,6 +24,7 @@ class UserProfileManager(BaseUserManager):
 
         return user
 
+
 class UserProfile(AbstractBaseUser, PermissionsMixin):
     email = models.EmailField(max_length=100, unique=True)
     is_active = models.BooleanField(default=True)
@@ -39,16 +37,18 @@ class UserProfile(AbstractBaseUser, PermissionsMixin):
     def __str__(self):
         return self.email
 
-class CategoryList(models.TextChoices):
-    Burger = "Burger", "Burger"
-    Pizza = "Pizza", "Pizza"
-    Chicken = "Chicken", "Chicken"
 
-    def __str__(self):
-        return self.Pizza + self.Burger + self.Chicken
+# class CategoryList(models.TextChoices):
+#     Burger = "Burger", "Burger"
+#     Pizza = "Pizza", "Pizza"
+#     Chicken = "Chicken", "Chicken"
+#
+#     def __str__(self):
+#         return self.Pizza + self.Burger + self.Chicken
+
 
 class Category(models.Model):
-    category = models.CharField(max_length=50,choices=CategoryList.choices)
+    category = models.CharField(max_length=50)
 
     def __str__(self):
         return self.category
@@ -60,16 +60,22 @@ class AddOnes(models.Model):
         ('cheese', 'Cheese'),
         ('meat', 'Meat'),
         ('spice', 'Spice'),
-        ('mayonise', 'Mayonise'),
-                       )
+        ('mayonnaise', 'Mayonnaise'),
+    )
     addOnes = MultiSelectField(choices=addOnes_list, max_length=500)
 
     def __str__(self):
         return str(self.addOnes)
 
-def upload_product_image (instance, filename):
-    return "uploads/{category}/{name}/{filename}".format(category=instance.category, name=instance.name, filename=filename)
+
+def upload_product_image(instance, filename):
+    return "uploads/{category}/{name}/{filename}".format(category=instance.category, name=instance.name,
+                                                         filename=filename)
+
+
 # https://stackoverflow.com/questions/36177385/visualizing-uploaded-images-in-django-admin
+
+
 class Product(models.Model):
     img = models.ImageField(upload_to=upload_product_image, null=True, blank=True)
     name = models.CharField(max_length=200)
@@ -79,19 +85,24 @@ class Product(models.Model):
     in_stock = models.IntegerField(default=0)
 
     def __str__(self):
-        return str(self.category)
+        return str(self.name)
+
 
 class CustomerDetail(models.Model):
     deliveryAddress = models.TextField(max_length=200, blank=True)
     phone = models.CharField(max_length=13, blank=True)
     paymentType = models.CharField(max_length=20, blank=True
                                    )
+
     def __str__(self):
-        return  self.deliveryAddress
+        return self.deliveryAddress
 
 
 class Order(models.Model):
     user = models.ForeignKey(UserProfile, on_delete=models.CASCADE, blank=True)
-    customer = models.OneToOneField(CustomerDetail, on_delete=models.CASCADE, blank=True)
-    products = models.ForeignKey(Product,  on_delete=models.CASCADE, blank=True)
+    customer = models.ManyToManyField(CustomerDetail, blank=True)
+    products = models.ForeignKey(Product, on_delete=models.CASCADE, blank=True)
     orderTime = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return str(self.products)

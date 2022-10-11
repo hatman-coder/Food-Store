@@ -5,13 +5,13 @@ class OrderAdmin(admin.ModelAdmin):
     list_display = ('user', 'products', 'customer', 'orderTime')
 
 class ProductAdmin(admin.ModelAdmin):
-    list_display = ('id', 'in_stock')
+    list_display = ('name', 'id', 'in_stock')
 
 class CategoryAdmin(admin.ModelAdmin):
-    list_display = ('id', 'category')
+    list_display = ('category', 'id')
 
 admin.site.register(UserProfile)
-admin.site.register(Order, OrderAdmin)
+admin.site.register(Order)
 admin.site.register(AddOnes)
 admin.site.register(CustomerDetail)
 admin.site.register(Category, CategoryAdmin)
