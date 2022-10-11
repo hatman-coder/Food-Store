@@ -1,6 +1,7 @@
 from rest_framework import serializers
 from .models import *
 from rest_framework import parsers
+import datetime
 
 
 class UserProfileSerializer(serializers.ModelSerializer):
@@ -22,10 +23,10 @@ class UserProfileSerializer(serializers.ModelSerializer):
         return user
 
 
-class AddOnesSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = AddOnes
-        exclude = ['id']
+# class AddOnesSerializer(serializers.ModelSerializer):
+#     class Meta:
+#         model = AddOnes
+#         exclude = ['id']
 
 
 class CustomerSerializer(serializers.ModelSerializer):
@@ -40,16 +41,13 @@ class CategorySerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 
-class AddOnesSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = AddOnes
-        fields = '__all__'
+# class AddOnesSerializer(serializers.ModelSerializer):
+#     class Meta:
+#         model = AddOnes
+#         fields = '__all__'
 
 
 class ProductSerializer(serializers.ModelSerializer):
-    category = CategorySerializer()
-    addOnes = AddOnesSerializer()
-
     class Meta:
         model = Product
         exclude = ['in_stock']
@@ -57,9 +55,7 @@ class ProductSerializer(serializers.ModelSerializer):
     def create(self, validated_data):
         category_data = validated_data.pop('category')
         addOnes_data = validated_data.pop('addOnes')
-        category = CategorySerializer.create(CategorySerializer(), validated_data=category_data)
-        addOnes = AddOnesSerializer.create(AddOnesSerializer(), validated_data=addOnes_data)
-        make, created = Product.objects.update_or_create(category=category, addOnes=addOnes,
+        make, created = Product.objects.update_or_create(category=category_data, addOnes=addOnes_data,
                                                          img=validated_data.pop('img'), name=validated_data.pop('name'),
                                                          price=validated_data.pop('price'))
         return make
@@ -68,17 +64,40 @@ class ProductSerializer(serializers.ModelSerializer):
 class OrderSerializer(serializers.ModelSerializer):
     customer = CustomerSerializer()
 
-    # products = ProductSerializer()
     class Meta:
         model = Order
-        fields = ['id', 'user', 'products', 'customer']
+        fields = ['id', 'user', 'products', 'customer', 'orderTime']
 
     def create(self, validated_data):
-        customerData = validated_data.pop('customer')
-        customer = CustomerSerializer.create(CustomerSerializer(), validated_data=customerData)
+        customer_data = validated_data.pop('customer')
+        customer = CustomerSerializer.create(CustomerSerializer(), validated_data=customer_data)
         order, created = Order.objects.update_or_create(
-            customer=customer,
             products=validated_data.pop('products'),
-            user=validated_data.pop('user')
+            user=validated_data.pop('user'),
+            customer=customer
         )
         return order
+
+    # def update(self, instance, validated_data):
+    # customer = validated_data.pop('customer')
+    # products = validated_data.pop('products')
+    # user = validated_data.pop('user')
+    # instance.user = validated_data.get('user', instance.user)
+    # instance.customer = validated_data.get('customer', instance.customer)
+    # instance.products = validated_data.get('products', instance.products)
+    # instance.save()
+    # return instance
+
+    # order_mapping = {order.id: order for order in instance}
+    # data_mapping = {item['id']: item for item in validated_data}
+    # ret = []
+    # for order_id, data in data_mapping.items():
+    #     order = order_mapping.get(order_id, None)
+    #     if order is None:
+    #         ret.append((self.child.create(data)))
+    #     else:
+    #         ret.append(self.child.update(order, data))
+    # for order_id, order in order_mapping.items():
+    #     if order_id not in data_mapping:
+    #         order.delete()
+    # return ret

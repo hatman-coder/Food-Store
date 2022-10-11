@@ -38,34 +38,11 @@ class UserProfile(AbstractBaseUser, PermissionsMixin):
         return self.email
 
 
-# class CategoryList(models.TextChoices):
-#     Burger = "Burger", "Burger"
-#     Pizza = "Pizza", "Pizza"
-#     Chicken = "Chicken", "Chicken"
-#
-#     def __str__(self):
-#         return self.Pizza + self.Burger + self.Chicken
-
-
 class Category(models.Model):
     category = models.CharField(max_length=50)
 
     def __str__(self):
         return self.category
-
-
-class AddOnes(models.Model):
-    addOnes_list = (
-        ('salad', 'Salad'),
-        ('cheese', 'Cheese'),
-        ('meat', 'Meat'),
-        ('spice', 'Spice'),
-        ('mayonnaise', 'Mayonnaise'),
-    )
-    addOnes = MultiSelectField(choices=addOnes_list, max_length=500)
-
-    def __str__(self):
-        return str(self.addOnes)
 
 
 def upload_product_image(instance, filename):
@@ -77,11 +54,19 @@ def upload_product_image(instance, filename):
 
 
 class Product(models.Model):
+    addOnes_list = (
+        ('salad', 'Salad'),
+        ('cheese', 'Cheese'),
+        ('meat', 'Meat'),
+        ('spice', 'Spice'),
+        ('mayonnaise', 'Mayonnaise'),
+    )
+
     img = models.ImageField(upload_to=upload_product_image, null=True, blank=True)
     name = models.CharField(max_length=200)
     price = models.CharField(max_length=600)
     category = models.ForeignKey(Category, on_delete=models.CASCADE, blank=True)
-    addOnes = models.ForeignKey(AddOnes, on_delete=models.CASCADE, blank=True)
+    addOnes = MultiSelectField(choices=addOnes_list, max_length=500)
     in_stock = models.IntegerField(default=0)
 
     def __str__(self):
@@ -100,7 +85,7 @@ class CustomerDetail(models.Model):
 
 class Order(models.Model):
     user = models.ForeignKey(UserProfile, on_delete=models.CASCADE, blank=True)
-    customerDetail = models.ForeignKey(CustomerDetail, on_delete=models.CASCADE)
+    customer = models.ForeignKey(CustomerDetail, on_delete=models.CASCADE)
     products = models.ForeignKey(Product, on_delete=models.CASCADE, blank=True)
     orderTime = models.DateTimeField(auto_now_add=True)
 
