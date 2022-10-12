@@ -1,7 +1,5 @@
 from rest_framework import serializers
 from .models import *
-from rest_framework import parsers
-import datetime
 
 
 class UserProfileSerializer(serializers.ModelSerializer):
@@ -23,12 +21,6 @@ class UserProfileSerializer(serializers.ModelSerializer):
         return user
 
 
-# class AddOnesSerializer(serializers.ModelSerializer):
-#     class Meta:
-#         model = AddOnes
-#         exclude = ['id']
-
-
 class CustomerSerializer(serializers.ModelSerializer):
     class Meta:
         model = CustomerDetail
@@ -39,12 +31,6 @@ class CategorySerializer(serializers.ModelSerializer):
     class Meta:
         model = Category
         fields = '__all__'
-
-
-# class AddOnesSerializer(serializers.ModelSerializer):
-#     class Meta:
-#         model = AddOnes
-#         fields = '__all__'
 
 
 class ProductSerializer(serializers.ModelSerializer):
@@ -78,26 +64,9 @@ class OrderSerializer(serializers.ModelSerializer):
         )
         return order
 
-    # def update(self, instance, validated_data):
-    # customer = validated_data.pop('customer')
-    # products = validated_data.pop('products')
-    # user = validated_data.pop('user')
-    # instance.user = validated_data.get('user', instance.user)
-    # instance.customer = validated_data.get('customer', instance.customer)
-    # instance.products = validated_data.get('products', instance.products)
-    # instance.save()
-    # return instance
-
-    # order_mapping = {order.id: order for order in instance}
-    # data_mapping = {item['id']: item for item in validated_data}
-    # ret = []
-    # for order_id, data in data_mapping.items():
-    #     order = order_mapping.get(order_id, None)
-    #     if order is None:
-    #         ret.append((self.child.create(data)))
-    #     else:
-    #         ret.append(self.child.update(order, data))
-    # for order_id, order in order_mapping.items():
-    #     if order_id not in data_mapping:
-    #         order.delete()
-    # return ret
+    def update(self, instance, validated_data):
+        nested_serializer = self.fields['customer']
+        nested_instance = instance.customer
+        nested_data = validated_data.pop('customer')
+        nested_serializer.update(nested_instance, nested_data)
+        return super(OrderSerializer, self).update(instance, validated_data)
