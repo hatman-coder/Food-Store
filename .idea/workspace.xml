@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="cf20ce7a-fe65-4c7d-a17d-d70ebf1de8af" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BurgerApi/serializers.py" beforeDir="false" afterPath="$PROJECT_DIR$/BurgerApi/serializers.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -15,6 +14,7 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/BurgerApi/serializers.py" root0="SKIP_INSPECTION" />
     <setting file="file://$PROJECT_DIR$/BurgerApi/views.py" root0="SKIP_INSPECTION" />
   </component>
   <component name="MarkdownSettingsMigration">

@@ -52,7 +52,10 @@ class OrderSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Order
-        fields = ['id', 'user', 'products', 'customer', 'orderTime']
+        fields = ['id', 'user', 'products', 'customer', 'orderTime', 'get_add_ones']
+        extra_kwarg = {
+            'get_add_ones': 'hidden'
+        }
 
     def create(self, validated_data):
         customer_data = validated_data.pop('customer')
@@ -60,7 +63,8 @@ class OrderSerializer(serializers.ModelSerializer):
         order, created = Order.objects.update_or_create(
             products=validated_data.pop('products'),
             user=validated_data.pop('user'),
-            customer=customer
+            customer=customer,
+            get_add_ones=validated_data.pop('get_add_ones')
         )
         return order
 

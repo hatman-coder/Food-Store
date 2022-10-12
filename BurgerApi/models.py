@@ -1,3 +1,5 @@
+from email.policy import default
+from re import T
 from django.db import models
 from multiselectfield import MultiSelectField
 from django.contrib.auth.models import (AbstractBaseUser,
@@ -88,6 +90,7 @@ class Order(models.Model):
     customer = models.ForeignKey(CustomerDetail, on_delete=models.CASCADE)
     products = models.ForeignKey(Product, on_delete=models.CASCADE, blank=True)
     orderTime = models.DateTimeField(auto_now_add=True)
+    get_add_ones = models.TextField(blank=True, null=True)
 
     def __str__(self):
         return str(self.products)
