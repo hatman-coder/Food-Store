@@ -53,9 +53,6 @@ class OrderSerializer(serializers.ModelSerializer):
     class Meta:
         model = Order
         fields = ['id', 'user', 'products', 'customer', 'orderTime', 'get_add_ones']
-        extra_kwarg = {
-            'get_add_ones': 'hidden'
-        }
 
     def create(self, validated_data):
         customer_data = validated_data.pop('customer')
