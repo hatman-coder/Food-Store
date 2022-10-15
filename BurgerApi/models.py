@@ -56,7 +56,7 @@ def upload_product_image(instance, filename):
 
 
 class Product(models.Model):
-    addOnes_list = (
+    addOns_list = (
         ('salad', 'Salad'),
         ('cheese', 'Cheese'),
         ('meat', 'Meat'),
@@ -68,7 +68,7 @@ class Product(models.Model):
     name = models.CharField(max_length=200)
     price = models.CharField(max_length=600)
     category = models.ForeignKey(Category, on_delete=models.CASCADE, blank=True)
-    addOnes = MultiSelectField(choices=addOnes_list, max_length=500)
+    addons = MultiSelectField(choices=addOns_list, max_length=500)
     in_stock = models.IntegerField(default=0)
 
     def __str__(self):
@@ -90,7 +90,7 @@ class Order(models.Model):
     customer = models.ForeignKey(CustomerDetail, on_delete=models.CASCADE)
     products = models.ForeignKey(Product, on_delete=models.CASCADE, blank=True)
     orderTime = models.DateTimeField(auto_now_add=True)
-    get_add_ones = models.TextField(blank=True, null=True)
+    addOns = models.TextField(blank=True, null=True)
 
     def __str__(self):
         return str(self.products)

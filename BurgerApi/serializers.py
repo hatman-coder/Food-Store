@@ -40,8 +40,8 @@ class ProductSerializer(serializers.ModelSerializer):
 
     def create(self, validated_data):
         category_data = validated_data.pop('category')
-        addOnes_data = validated_data.pop('addOnes')
-        make, created = Product.objects.update_or_create(category=category_data, addOnes=addOnes_data,
+        addOns_data = validated_data.pop('addOns')
+        make, created = Product.objects.update_or_create(category=category_data, addOns=addOns_data,
                                                          img=validated_data.pop('img'), name=validated_data.pop('name'),
                                                          price=validated_data.pop('price'))
         return make
@@ -52,7 +52,7 @@ class OrderSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Order
-        fields = ['id', 'user', 'products', 'customer', 'orderTime', 'get_add_ones']
+        fields = ['id', 'user', 'products', 'customer', 'orderTime', 'addOns']
 
     def create(self, validated_data):
         customer_data = validated_data.pop('customer')
@@ -61,7 +61,7 @@ class OrderSerializer(serializers.ModelSerializer):
             products=validated_data.pop('products'),
             user=validated_data.pop('user'),
             customer=customer,
-            get_add_ones=validated_data.pop('get_add_ones')
+            addOns=validated_data.pop('addOns')
         )
         return order
 
