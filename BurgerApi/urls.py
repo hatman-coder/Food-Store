@@ -15,6 +15,6 @@ router.register(r'product', ProductViewset)
 router.register(r'category', CategoryViewset)
 
 urlpatterns = [
-    path('token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
-    path('token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
+    path('login/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
+    path('login/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
 ] + router.urls + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

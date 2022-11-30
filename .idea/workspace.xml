@@ -3,15 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="e351b304-3406-42f0-853d-db0f59743519" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BurgerApi/migrations/0001_initial.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BurgerApi/migrations/0002_rename_getaddones_order_get_add_ones.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BurgerApi/migrations/0003_rename_get_add_ones_order_addones_and_more.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BurgerApi/migrations/0004_rename_addones_order_addons_and_more.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BurgerApi/migrations/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BurgerApi/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/BurgerApi/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BurgerApi/serializers.py" beforeDir="false" afterPath="$PROJECT_DIR$/BurgerApi/serializers.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BurgerApi/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/BurgerApi/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -79,7 +70,8 @@
       <workItem from="1665859028772" duration="653000" />
       <workItem from="1669035427675" duration="3727000" />
       <workItem from="1669050282058" duration="994000" />
-      <workItem from="1669122268013" duration="2318000" />
+      <workItem from="1669122268013" duration="2438000" />
+      <workItem from="1669730955419" duration="3000" />
     </task>
     <servers />
   </component>
