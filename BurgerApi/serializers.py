@@ -62,7 +62,7 @@ class OrderSerializer(serializers.ModelSerializer):
             user=validated_data.pop('user'),
             customer=customer,
             addOns=validated_data.pop('addOns'),
-            qunatity=validated_data.pop('quantity')
+            quantity=validated_data.pop('quantity')
         )
         return order
 
