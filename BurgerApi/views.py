@@ -18,6 +18,18 @@ class OrderViewSet(viewsets.ModelViewSet):
     serializer_class = OrderSerializer
 
 
+    # def get_queryset(self):
+    #     queryset = super(OrderViewSet, self).get_queryset()
+    #
+    #     user_id = self.request.query_params.get('user_id')
+    #     if user_id is not None:
+    #         queryset = queryset.filter(user=user_id)
+    #     else:
+    #         queryset = queryset
+    #     return queryset
+
+
+
 class CustomerViewSet(viewsets.ModelViewSet):
     queryset = CustomerDetail.objects.all()
     serializer_class = CustomerSerializer
@@ -31,4 +43,3 @@ class ProductViewset(viewsets.ModelViewSet):
 class CategoryViewset(viewsets.ModelViewSet):
     queryset = Category.objects.all()
     serializer_class = CategorySerializer
-

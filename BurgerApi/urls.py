@@ -14,6 +14,7 @@ router.register(r'order', OrderViewSet)
 router.register(r'product', ProductViewset)
 router.register(r'category', CategoryViewset)
 
+
 urlpatterns = [
     path('login/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('login/refresh/', TokenRefreshView.as_view(), name='token_refresh'),

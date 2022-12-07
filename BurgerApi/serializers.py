@@ -72,3 +72,9 @@ class OrderSerializer(serializers.ModelSerializer):
         nested_data = validated_data.pop('customer')
         nested_serializer.update(nested_instance, nested_data)
         return super(OrderSerializer, self).update(instance, validated_data)
+
+
+
+
+
+    
