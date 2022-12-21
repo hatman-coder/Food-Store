@@ -74,7 +74,39 @@ class OrderSerializer(serializers.ModelSerializer):
         return super(OrderSerializer, self).update(instance, validated_data)
 
 
+class OrderMasterSerializer(serializers.ModelSerializer):
+    customerDetail = CustomerSerializer()
+
+    class Meta:
+        model = OrderMaster
+        fields = '__all__'
+
+    def create(self, validated_data):
+        customer_data = validated_data.pop('customerDetail')
+        customer_detail = CustomerSerializer.create(CustomerSerializer(), validated_data=customer_data)
+        make, created = OrderMaster.objects.update_or_create(
+            orderNo=validated_data.pop('orderNo'),
+            userId=validated_data.pop('userId'),
+            customerDetail=customer_detail
+        )
+        return make
 
 
+class OrderDetailSerializer(serializers.ModelSerializer):
+    orderMasterId = OrderMasterSerializer()
 
-    
+    class Meta:
+        model = OrderDetail
+        fields = '__all__'
+
+    def create(self, validated_data):
+        orderMasterData = validated_data.pop('orderMasterId')
+        orderMasterId = OrderMasterSerializer.create(OrderMasterSerializer(), validated_data=orderMasterData)
+        order, created = OrderDetail.objects.update_or_create(
+            orderMasterId=orderMasterId,
+            productsId=validated_data.pop('productsId'),
+            addOns=validated_data.pop('addOns'),
+            quantity=validated_data.pop('quantity'),
+        )
+        return order
+

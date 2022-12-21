@@ -13,6 +13,8 @@ router.register(r'user', UserProfileViewSet)
 router.register(r'order', OrderViewSet)
 router.register(r'product', ProductViewset)
 router.register(r'category', CategoryViewset)
+router.register(r'orderDetail', OrderDetailViewset)
+router.register(r'orderMaster', OrderMasterViewset)
 
 
 urlpatterns = [

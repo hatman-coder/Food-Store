@@ -1,9 +1,12 @@
 from django.db import models
+from django.db.models import ForeignKey
 from multiselectfield import MultiSelectField
 from django.contrib.auth.models import (AbstractBaseUser,
                                         BaseUserManager,
                                         PermissionsMixin)
+import random
 
+random_num = random.randint(123456789, 9876543210)
 
 class UserProfileManager(BaseUserManager):
     def create_user(self, email, password=None):
@@ -93,5 +96,24 @@ class Order(models.Model):
 
     def __str__(self):
         return str(self.products)
+
+
+
+
+
+class OrderMaster(models.Model):
+    orderNo = models.CharField(default=random_num, max_length=100000000000, blank=True)
+    userId = models.ForeignKey(UserProfile, on_delete=models.CASCADE)
+    customerDetail = models.ForeignKey(CustomerDetail, on_delete=models.CASCADE)
+    orderTime = models.DateTimeField(auto_now_add=True)
+
+
+
+
+class OrderDetail(models.Model):
+    orderMasterId = models.ForeignKey(OrderMaster, on_delete=models.CASCADE)
+    productsId = models.ForeignKey(Product, on_delete=models.CASCADE)
+    addOns = models.CharField(max_length=100, blank=True)
+    quantity = models.TextField(max_length=20, blank=True)
 
 

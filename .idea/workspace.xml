@@ -2,9 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e351b304-3406-42f0-853d-db0f59743519" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/Food-Store.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Food-Store.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BurgerApi/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/BurgerApi/admin.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/BurgerApi/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/BurgerApi/models.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/BurgerApi/serializers.py" beforeDir="false" afterPath="$PROJECT_DIR$/BurgerApi/serializers.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/BurgerApi/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/BurgerApi/urls.py" afterDir="false" />
@@ -23,6 +22,8 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/BurgerApi/models.py" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/BurgerApi/serializers.py" root0="SKIP_INSPECTION" />
     <setting file="file://$PROJECT_DIR$/BurgerApi/views.py" root0="SKIP_INSPECTION" />
   </component>
   <component name="MarkdownSettingsMigration">

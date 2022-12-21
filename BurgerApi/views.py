@@ -43,3 +43,12 @@ class ProductViewset(viewsets.ModelViewSet):
 class CategoryViewset(viewsets.ModelViewSet):
     queryset = Category.objects.all()
     serializer_class = CategorySerializer
+
+class OrderMasterViewset(viewsets.ModelViewSet):
+    queryset = OrderMaster.objects.all()
+    serializer_class = OrderMasterSerializer
+
+class OrderDetailViewset(viewsets.ModelViewSet):
+    queryset = OrderDetail.objects.all()
+    serializer_class = OrderDetailSerializer
+
