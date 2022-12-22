@@ -4,11 +4,32 @@
     <list default="true" id="e351b304-3406-42f0-853d-db0f59743519" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/BurgerApi/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/BurgerApi/admin.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BurgerApi/migrations/0001_initial.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BurgerApi/migrations/0002_rename_qunatity_order_quantity.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BurgerApi/migrations/0003_ordermaster_orderdetail.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BurgerApi/migrations/0004_alter_ordermaster_orderno.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BurgerApi/migrations/0005_alter_orderdetail_ordermasterid_and_more.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BurgerApi/migrations/0006_alter_ordermaster_orderno.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BurgerApi/migrations/0007_alter_orderdetail_ordermasterid.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BurgerApi/migrations/0008_alter_ordermaster_orderno.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BurgerApi/migrations/0009_alter_ordermaster_orderno.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BurgerApi/migrations/0010_alter_ordermaster_orderno.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BurgerApi/migrations/0011_alter_ordermaster_orderno.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BurgerApi/migrations/0012_alter_orderdetail_addons_alter_orderdetail_quantity_and_more.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BurgerApi/migrations/0013_alter_ordermaster_orderno.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BurgerApi/migrations/0014_alter_ordermaster_orderno.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BurgerApi/migrations/0015_alter_ordermaster_orderno.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BurgerApi/migrations/0016_alter_orderdetail_quantity.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BurgerApi/migrations/0017_alter_orderdetail_quantity_alter_ordermaster_orderno.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BurgerApi/migrations/0018_alter_ordermaster_orderno.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BurgerApi/migrations/0019_alter_ordermaster_orderno.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BurgerApi/migrations/0020_alter_ordermaster_orderno.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BurgerApi/migrations/__init__.py" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/BurgerApi/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/BurgerApi/models.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/BurgerApi/serializers.py" beforeDir="false" afterPath="$PROJECT_DIR$/BurgerApi/serializers.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/BurgerApi/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/BurgerApi/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/BurgerApi/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/BurgerApi/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

@@ -1,3 +1,5 @@
+import string
+
 from django.db import models
 from django.db.models import ForeignKey
 from multiselectfield import MultiSelectField
@@ -6,7 +8,11 @@ from django.contrib.auth.models import (AbstractBaseUser,
                                         PermissionsMixin)
 import random
 
-random_num = random.randint(123456789, 9876543210)
+
+def random_string(size=10, chars=string.ascii_lowercase + string.digits):
+    data = ''.join(random.choice(chars) for _ in range(size))
+    return data
+
 
 class UserProfileManager(BaseUserManager):
     def create_user(self, email, password=None):
@@ -57,7 +63,7 @@ def upload_product_image(instance, filename):
 
 
 class Product(models.Model):
-    addOns_list = (
+    add_ons_list = (
         ('salad', 'Salad'),
         ('cheese', 'Cheese'),
         ('meat', 'Meat'),
@@ -69,7 +75,7 @@ class Product(models.Model):
     name = models.CharField(max_length=200)
     price = models.CharField(max_length=600)
     category = models.ForeignKey(Category, on_delete=models.CASCADE, blank=True)
-    addons = MultiSelectField(choices=addOns_list, max_length=500)
+    add_ons = MultiSelectField(choices=add_ons_list, max_length=500)
     in_stock = models.IntegerField(default=0)
 
     def __str__(self):
@@ -77,43 +83,28 @@ class Product(models.Model):
 
 
 class CustomerDetail(models.Model):
-    deliveryAddress = models.TextField(max_length=200, blank=True)
-    phone = models.CharField(max_length=13, blank=True)
-    paymentType = models.CharField(max_length=20, blank=True
-                                   )
+    delivery_address = models.TextField(max_length=200, blank=True)
+    contact_number = models.CharField(max_length=13, blank=True)
+    payment_type = models.CharField(max_length=20, blank=True
+                                    )
 
     def __str__(self):
-        return self.deliveryAddress
-
-
-class Order(models.Model):
-    user = models.ForeignKey(UserProfile, on_delete=models.CASCADE, blank=True)
-    customer = models.ForeignKey(CustomerDetail, on_delete=models.CASCADE)
-    products = models.ForeignKey(Product, on_delete=models.CASCADE, blank=True)
-    orderTime = models.DateTimeField(auto_now_add=True)
-    addOns = models.TextField(blank=True, null=True)
-    quantity = models.TextField(blank=True, null=True)
-
-    def __str__(self):
-        return str(self.products)
-
-
-
+        return self.delivery_address
 
 
 class OrderMaster(models.Model):
-    orderNo = models.CharField(default=random_num, max_length=100000000000, blank=True)
-    userId = models.ForeignKey(UserProfile, on_delete=models.CASCADE)
-    customerDetail = models.ForeignKey(CustomerDetail, on_delete=models.CASCADE)
-    orderTime = models.DateTimeField(auto_now_add=True)
-
-
+    order_no = models.CharField(max_length=10,
+                                blank=True,
+                                editable=False,
+                                unique=True,
+                                default=random_string)
+    user_id = models.ForeignKey(UserProfile, on_delete=models.CASCADE)
+    customer_detail = models.ForeignKey(CustomerDetail, on_delete=models.CASCADE)
+    order_time = models.DateTimeField(auto_now_add=True)
 
 
 class OrderDetail(models.Model):
-    orderMasterId = models.ForeignKey(OrderMaster, on_delete=models.CASCADE)
-    productsId = models.ForeignKey(Product, on_delete=models.CASCADE)
-    addOns = models.CharField(max_length=100, blank=True)
+    order_master_id = models.ForeignKey(OrderMaster, on_delete=models.CASCADE)
+    product_id = models.ForeignKey(Product, on_delete=models.CASCADE)
+    add_ons = models.CharField(max_length=100, blank=True)
     quantity = models.TextField(max_length=20, blank=True)
-
-
