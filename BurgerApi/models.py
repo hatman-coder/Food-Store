@@ -85,8 +85,8 @@ class Product(models.Model):
 class CustomerDetail(models.Model):
     delivery_address = models.TextField(max_length=200, blank=True)
     contact_number = models.CharField(max_length=13, blank=True)
-    payment_type = models.CharField(max_length=20, blank=True
-                                    )
+    payment_type = models.CharField(max_length=20, blank=True)
+    user_id = models.ForeignKey(UserProfile, on_delete=models.CASCADE)
 
     def __str__(self):
         return self.delivery_address
@@ -102,9 +102,17 @@ class OrderMaster(models.Model):
     customer_detail = models.ForeignKey(CustomerDetail, on_delete=models.CASCADE)
     order_time = models.DateTimeField(auto_now_add=True)
 
+    def __str__(self):
+        return str(self.user_id)
+
 
 class OrderDetail(models.Model):
     order_master_id = models.ForeignKey(OrderMaster, on_delete=models.CASCADE)
     product_id = models.ForeignKey(Product, on_delete=models.CASCADE)
+    price = models.CharField(max_length=10000)
     add_ons = models.CharField(max_length=100, blank=True)
     quantity = models.TextField(max_length=20, blank=True)
+    is_active = models.BooleanField(default=True, auto_created=True, editable=False)
+
+    def __str__(self):
+        return str(self.order_master_id.order_no)

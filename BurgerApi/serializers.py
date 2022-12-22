@@ -86,8 +86,9 @@ class OrderDetailSerializer(serializers.ModelSerializer):
         order_detail, created = OrderDetail.objects.update_or_create(
             order_master_id=order_master_id,
             product_id=validated_data.pop('product_id'),
+            price=validated_data.pop('price'),
             add_ons=validated_data.pop('add_ons'),
-            quantity=validated_data.pop('quantity'),
+            quantity=validated_data.pop('quantity')
         )
         return order_detail
 
