@@ -1,12 +1,19 @@
 import string
-
+import random
 from django.db import models
 from django.db.models import ForeignKey
 from multiselectfield import MultiSelectField
 from django.contrib.auth.models import (AbstractBaseUser,
                                         BaseUserManager,
                                         PermissionsMixin)
-import random
+
+
+def upload_product_image(instance, filename):
+    return "uploads/{category}/{name}/{filename}".format(category=instance.category, name=instance.name,
+                                                         filename=filename)
+
+
+# https://stackoverflow.com/questions/36177385/visualizing-uploaded-images-in-django-admin
 
 
 def random_string(size=10, chars=string.ascii_lowercase + string.digits):
@@ -47,19 +54,35 @@ class UserProfile(AbstractBaseUser, PermissionsMixin):
         return self.email
 
 
+class UserType(models.Model):
+    type = models.CharField(max_length=100)
+    user = models.ForeignKey(UserProfile, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.type
+
+
+class AddOns(models.Model):
+    add_ons = models.CharField(max_length=100)
+    price = models.IntegerField()
+
+    def __str__(self):
+        return self.add_ons
+
+
+class PaymentType(models.Model):
+    payment_type = models.CharField(max_length=100)
+
+    def __str__(self):
+        return self.payment_type
+
+
 class Category(models.Model):
     category = models.CharField(max_length=50)
+    add_ons = models.ForeignKey(AddOns, on_delete=models.CASCADE)
 
     def __str__(self):
         return self.category
-
-
-def upload_product_image(instance, filename):
-    return "uploads/{category}/{name}/{filename}".format(category=instance.category, name=instance.name,
-                                                         filename=filename)
-
-
-# https://stackoverflow.com/questions/36177385/visualizing-uploaded-images-in-django-admin
 
 
 class Product(models.Model):
@@ -75,7 +98,7 @@ class Product(models.Model):
     name = models.CharField(max_length=200)
     price = models.CharField(max_length=600)
     category = models.ForeignKey(Category, on_delete=models.CASCADE, blank=True)
-    add_ons = MultiSelectField(choices=add_ons_list, max_length=500)
+    add_ons = models.ForeignKey(AddOns, on_delete=models.CASCADE)
     in_stock = models.IntegerField(default=0)
 
     def __str__(self):
@@ -85,11 +108,21 @@ class Product(models.Model):
 class CustomerDetail(models.Model):
     delivery_address = models.TextField(max_length=200, blank=True)
     contact_number = models.CharField(max_length=13, blank=True)
-    payment_type = models.CharField(max_length=20, blank=True)
     user_id = models.ForeignKey(UserProfile, on_delete=models.CASCADE)
 
     def __str__(self):
         return self.delivery_address
+
+
+class OrderStatus(models.Model):
+    order_placed = models.BooleanField(default=True)
+    order_confirmed = models.BooleanField(default=False)
+    order_preparation = models.BooleanField(default=False)
+    out_for_delivery = models.BooleanField(default=False)
+    delivered = models.BooleanField(default=False)
+
+    def __str__(self):
+        return str(self.order_confirmed)
 
 
 class OrderMaster(models.Model):
@@ -100,10 +133,14 @@ class OrderMaster(models.Model):
                                 default=random_string)
     user_id = models.ForeignKey(UserProfile, on_delete=models.CASCADE)
     customer_detail = models.ForeignKey(CustomerDetail, on_delete=models.CASCADE)
+    order_status = models.ForeignKey(OrderStatus, on_delete=models.CASCADE)
+    payment_type = models.ForeignKey(PaymentType, on_delete=models.CASCADE)
+    total = models.CharField(max_length=100, null=True, blank=True)
     order_time = models.DateTimeField(auto_now_add=True)
+    delivery_time = models.CharField(max_length=1000, editable=False)
 
     def __str__(self):
-        return str(self.user_id)
+        return str(self.delivery_time)
 
 
 class OrderDetail(models.Model):
@@ -112,7 +149,6 @@ class OrderDetail(models.Model):
     price = models.CharField(max_length=10000)
     add_ons = models.CharField(max_length=100, blank=True)
     quantity = models.TextField(max_length=20, blank=True)
-    is_active = models.BooleanField(default=True, auto_created=True, editable=False)
 
     def __str__(self):
         return str(self.order_master_id.order_no)

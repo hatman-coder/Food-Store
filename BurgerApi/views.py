@@ -15,7 +15,7 @@ class UserProfileViewSet(viewsets.ModelViewSet):
 
 class CustomerViewSet(viewsets.ModelViewSet):
     queryset = CustomerDetail.objects.all()
-    serializer_class = CustomerSerializer
+    serializer_class = CustomerDetailSerializer
 
 
 class ProductViewset(viewsets.ModelViewSet):

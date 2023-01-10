@@ -1,5 +1,5 @@
 from django.contrib import admin
-from BurgerApi.models import UserProfile, OrderDetail, OrderMaster, CustomerDetail, Category, Product
+from BurgerApi.models import *
 
 
 class ProductAdmin(admin.ModelAdmin):
@@ -24,3 +24,7 @@ admin.site.register(Category, CategoryAdmin)
 admin.site.register(Product, ProductAdmin)
 admin.site.register(OrderDetail, OrderDetailAdmin)
 admin.site.register(OrderMaster, OrderMasterAdmin)
+admin.site.register(UserType)
+admin.site.register(AddOns)
+admin.site.register(PaymentType)
+admin.site.register(OrderStatus)
