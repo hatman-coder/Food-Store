@@ -35,6 +35,10 @@ class AddOnsSerializer(serializers.ModelSerializer):
         model = AddOns
         fields = '__all__'
 
+class PaymentTypeSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = PaymentType
+        fields = '__all__'
 
 class CategorySerializer(serializers.ModelSerializer):
     class Meta:
@@ -49,7 +53,6 @@ class ProductSerializer(serializers.ModelSerializer):
 
     def create(self, validated_data):
         category_data = validated_data.pop('category')
-        add_ons_data = validated_data.pop('add_ons')
         product, created = Product.objects.update_or_create(
             img=validated_data.pop('img'),
             name=validated_data.pop('name'),
