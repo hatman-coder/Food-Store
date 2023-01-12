@@ -55,7 +55,6 @@ class ProductSerializer(serializers.ModelSerializer):
             name=validated_data.pop('name'),
             price=validated_data.pop('price'),
             category=category_data,
-            add_ons=add_ons_data,
             in_stock=validated_data.pop('in_stock')
         )
         return product
@@ -66,10 +65,12 @@ class CustomerDetailSerializer(serializers.ModelSerializer):
         model = CustomerDetail
         fields = '__all__'
 
+
 class OrderStatusSerializer(serializers.ModelSerializer):
     class Meta:
         model = OrderStatus
         fields = '__all__'
+
 
 class OrderMasterSerializer(serializers.ModelSerializer):
     customer_detail = CustomerDetailSerializer()
@@ -119,7 +120,6 @@ class OrderDetailSerializer(serializers.ModelSerializer):
         order_detail, created = OrderDetail.objects.update_or_create(
             order_master_id=order_master_id,
             product_id=validated_data.pop('product_id'),
-            price=validated_data.pop('price'),
             add_ons=validated_data.pop('add_ons'),
             quantity=validated_data.pop('quantity')
         )

@@ -62,14 +62,6 @@ class UserType(models.Model):
         return self.type
 
 
-class AddOns(models.Model):
-    add_ons = models.CharField(max_length=100)
-    price = models.IntegerField()
-
-    def __str__(self):
-        return self.add_ons
-
-
 class PaymentType(models.Model):
     payment_type = models.CharField(max_length=100)
 
@@ -79,30 +71,29 @@ class PaymentType(models.Model):
 
 class Category(models.Model):
     category = models.CharField(max_length=50)
-    add_ons = models.ForeignKey(AddOns, on_delete=models.CASCADE)
 
     def __str__(self):
         return self.category
 
 
 class Product(models.Model):
-    add_ons_list = (
-        ('salad', 'Salad'),
-        ('cheese', 'Cheese'),
-        ('meat', 'Meat'),
-        ('spice', 'Spice'),
-        ('mayonnaise', 'Mayonnaise'),
-    )
-
     img = models.ImageField(upload_to=upload_product_image, null=True, blank=True)
     name = models.CharField(max_length=200)
     price = models.CharField(max_length=600)
     category = models.ForeignKey(Category, on_delete=models.CASCADE, blank=True)
-    add_ons = models.ForeignKey(AddOns, on_delete=models.CASCADE)
     in_stock = models.IntegerField(default=0)
 
     def __str__(self):
         return str(self.name)
+
+
+class AddOns(models.Model):
+    add_ons = models.CharField(max_length=100)
+    price = models.IntegerField()
+    category = models.ForeignKey(Category, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.add_ons
 
 
 class CustomerDetail(models.Model):
@@ -117,7 +108,7 @@ class CustomerDetail(models.Model):
 class OrderStatus(models.Model):
     order_placed = models.BooleanField(default=True)
     order_confirmed = models.BooleanField(default=False)
-    order_preparation = models.BooleanField(default=False)
+    order_preparation_on_going = models.BooleanField(default=False)
     out_for_delivery = models.BooleanField(default=False)
     delivered = models.BooleanField(default=False)
 
@@ -135,6 +126,7 @@ class OrderMaster(models.Model):
     customer_detail = models.ForeignKey(CustomerDetail, on_delete=models.CASCADE)
     order_status = models.ForeignKey(OrderStatus, on_delete=models.CASCADE)
     payment_type = models.ForeignKey(PaymentType, on_delete=models.CASCADE)
+    payment_status = models.BooleanField(default=False, null=True, blank=True)
     total = models.CharField(max_length=100, null=True, blank=True)
     order_time = models.DateTimeField(auto_now_add=True)
     delivery_time = models.CharField(max_length=1000, editable=False)
@@ -146,7 +138,6 @@ class OrderMaster(models.Model):
 class OrderDetail(models.Model):
     order_master_id = models.ForeignKey(OrderMaster, on_delete=models.CASCADE)
     product_id = models.ForeignKey(Product, on_delete=models.CASCADE)
-    price = models.CharField(max_length=10000)
     add_ons = models.CharField(max_length=100, blank=True)
     quantity = models.TextField(max_length=20, blank=True)
 
