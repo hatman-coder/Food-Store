@@ -8,6 +8,10 @@ from django.contrib.auth.decorators import login_required
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.decorators import api_view
 from django.http.response import JsonResponse
+from rest_framework.views import APIView
+from django_filters.rest_framework import DjangoFilterBackend
+from rest_framework.response import Response
+
 
 class UserProfileViewSet(viewsets.ModelViewSet):
     queryset = UserProfile.objects.all()
@@ -51,3 +55,14 @@ class PaymentTypeViewset(viewsets.ModelViewSet):
 class AddOnsViewSet(viewsets.ModelViewSet):
     queryset = AddOns.objects.all()
     serializer_class = AddOnsSerializer
+
+class CategorizedAddOnsViewSet(APIView):
+    queryset = AddOns.objects.all()
+    serializer_class = AddOnsSerializer
+
+    def get(self, request, format=None):
+        query_param= self.request.query_params.get('category')
+        addOns = AddOns.objects.filter(category=query_param)
+        serializer = AddOnsSerializer(addOns, many=True)
+        return Response(serializer.data)
+
