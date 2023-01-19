@@ -23,5 +23,5 @@ router.register(r'paymentType', PaymentTypeViewset)
 urlpatterns = [
                   path('login/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
                   path('login/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
-                  path('addOns/filter/', CategorizedAddOnsViewSet.as_view(), name='addOns')
+                  path('addOns/filter/', CategorizedAddOnsViewSet.as_view(), name='addOns'),
               ] + router.urls + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
