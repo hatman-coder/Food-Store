@@ -89,7 +89,7 @@ class Product(models.Model):
 
 class AddOns(models.Model):
     add_ons = models.CharField(max_length=100)
-    price = models.IntegerField()
+    add_ons_price = models.IntegerField()
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
 
     def __str__(self):
