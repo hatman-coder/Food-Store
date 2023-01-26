@@ -12,6 +12,8 @@ from rest_framework.views import APIView
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework.response import Response
 from django.db.models import Q
+from rest_framework import authentication, status
+from django.contrib.auth import authenticate, login
 
 class UserProfileViewSet(viewsets.ModelViewSet):
     queryset = UserProfile.objects.all()
@@ -66,3 +68,22 @@ class CategorizedAddOnsViewSet(APIView):
         serializer = AddOnsSerializer(addOns, many=True)
         return Response(serializer.data)
 
+
+
+class LoginApi(APIView):
+    authentication_classes = (authentication.SessionAuthentication,)
+
+    def post(self, request, format=None):
+        # Get the user's credentials
+        email = request.data.get('email')
+        password = request.data.get('password')
+
+        # Attempt to authenticate the user
+        user = authenticate(request, email=email, password=password)
+
+        if user is not None:
+            # Log the user in
+            login(request, user)
+            return Response(status=status.HTTP_200_OK)
+        else:
+            return Response(status=status.HTTP_401_UNAUTHORIZED)

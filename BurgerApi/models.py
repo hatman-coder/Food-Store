@@ -68,6 +68,12 @@ class PaymentType(models.Model):
     def __str__(self):
         return self.payment_type
 
+class PaymentStatus(models.Model):
+    payment_status = models.CharField(max_length=50)
+
+    def __str__(self):
+        return self.payment_status
+
 
 class Category(models.Model):
     category = models.CharField(max_length=50)
@@ -106,11 +112,12 @@ class CustomerDetail(models.Model):
 
 
 class OrderStatus(models.Model):
-    order_placed = models.BooleanField(default=True)
-    order_confirmed = models.BooleanField(default=False)
-    order_preparation_on_going = models.BooleanField(default=False)
-    out_for_delivery = models.BooleanField(default=False)
-    delivered = models.BooleanField(default=False)
+    order_placed = models.CharField(max_length=100)
+    order_pending = models.CharField(max_length=100)
+    order_confirmed = models.CharField(max_length=100)
+    order_preparation_on_going = models.CharField(max_length=100)
+    out_for_delivery = models.CharField(max_length=100)
+    delivered = models.CharField(max_length=100)
 
     def __str__(self):
         return str(self.order_confirmed)
@@ -126,7 +133,7 @@ class OrderMaster(models.Model):
     customer_detail = models.ForeignKey(CustomerDetail, on_delete=models.CASCADE)
     order_status = models.ForeignKey(OrderStatus, on_delete=models.CASCADE)
     payment_type = models.ForeignKey(PaymentType, on_delete=models.CASCADE)
-    payment_status = models.BooleanField(default=False, null=True, blank=True)
+    payment_status = models.ForeignKey(PaymentStatus, on_delete=models.CASCADE, null=True, default=None)
     total = models.CharField(max_length=100, null=True, blank=True)
     order_time = models.DateTimeField(auto_now_add=True)
     delivery_time = models.CharField(max_length=1000, editable=False)
