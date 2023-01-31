@@ -6,53 +6,13 @@
   <component name="ChangeListManager">
     <list default="true" id="e351b304-3406-42f0-853d-db0f59743519" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BurgerApi/migrations/0001_initial.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BurgerApi/migrations/0002_rename_phone_customerdetail_contact_number_and_more.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BurgerApi/migrations/0003_delete_order.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BurgerApi/migrations/0004_customerdetail_user_id_orderdetail_is_active_and_more.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BurgerApi/migrations/0005_alter_orderdetail_is_active.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BurgerApi/migrations/0006_ordermaster_delivery_time.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BurgerApi/migrations/0007_alter_ordermaster_delivery_time.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BurgerApi/migrations/0008_alter_ordermaster_delivery_time.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BurgerApi/migrations/0009_alter_ordermaster_delivery_time.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BurgerApi/migrations/0010_alter_ordermaster_delivery_time.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BurgerApi/migrations/0011_alter_ordermaster_delivery_time.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BurgerApi/migrations/0012_alter_ordermaster_delivery_time.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BurgerApi/migrations/0013_alter_ordermaster_delivery_time.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BurgerApi/migrations/0014_alter_ordermaster_delivery_time.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BurgerApi/migrations/0015_alter_ordermaster_delivery_time.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BurgerApi/migrations/0016_alter_ordermaster_delivery_time.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BurgerApi/migrations/0017_alter_ordermaster_delivery_time.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BurgerApi/migrations/0018_alter_ordermaster_delivery_time.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BurgerApi/migrations/0019_alter_ordermaster_delivery_time.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BurgerApi/migrations/0020_alter_ordermaster_delivery_time.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BurgerApi/migrations/0021_alter_ordermaster_delivery_time.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BurgerApi/migrations/0022_alter_ordermaster_delivery_time.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BurgerApi/migrations/0023_remove_orderdetail_is_active_and_more.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BurgerApi/migrations/0024_addons_orderstatus_paymenttype_and_more.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BurgerApi/migrations/0025_alter_ordermaster_total.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BurgerApi/migrations/0026_ordermaster_order_status.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BurgerApi/migrations/0027_alter_orderstatus_order_placed.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BurgerApi/migrations/0028_alter_orderstatus_delivered_and_more.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BurgerApi/migrations/0029_alter_orderstatus_order_placed.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BurgerApi/migrations/0030_alter_orderstatus_order_placed.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BurgerApi/migrations/0031_alter_orderstatus_order_placed.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BurgerApi/migrations/0032_alter_orderstatus_order_placed.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BurgerApi/migrations/0033_alter_orderstatus_delivered_and_more.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BurgerApi/migrations/0034_alter_orderstatus_delivered_and_more.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BurgerApi/migrations/0035_alter_orderstatus_order_placed.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BurgerApi/migrations/0036_alter_orderstatus_delivered_and_more.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BurgerApi/migrations/0037_rename_order_preparation_orderstatus_order_preparation_on_going.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BurgerApi/migrations/0038_ordermaster_payment_status.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BurgerApi/migrations/0039_remove_orderdetail_price.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BurgerApi/migrations/0040_remove_category_add_ons_remove_product_add_ons_and_more.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BurgerApi/migrations/0041_remove_addons_product_addons_category.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BurgerApi/migrations/0042_rename_price_addons_add_ons_price.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BurgerApi/migrations/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BurgerApi/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/BurgerApi/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BurgerApi/permissions.py" beforeDir="false" afterPath="$PROJECT_DIR$/BurgerApi/permissions.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/BurgerApi/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/BurgerApi/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/BurgerApi/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/BurgerApi/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
+    </list>
+    <list id="f0a40668-9267-40a5-8352-c26fb13808bc" name="Changes by boss" comment="">
+      <change beforePath="$PROJECT_DIR$/BurgerApi/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/BurgerApi/views.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -70,6 +30,17 @@
     <setting file="file://$PROJECT_DIR$/BurgerApi/serializers.py" root0="SKIP_INSPECTION" />
     <setting file="file://$PROJECT_DIR$/BurgerApi/views.py" root0="SKIP_INSPECTION" />
   </component>
+  <component name="LineStatusTrackerManager">
+    <file path="$PROJECT_DIR$/BurgerApi/views.py">
+      <ranges>
+        <range start1="7" end1="8" start2="7" end2="8" changelist="e351b304-3406-42f0-853d-db0f59743519" />
+        <range start1="16" end1="16" start2="16" end2="19" changelist="e351b304-3406-42f0-853d-db0f59743519" />
+        <range start1="35" end1="35" start2="38" end2="39" changelist="e351b304-3406-42f0-853d-db0f59743519" />
+        <range start1="66" end1="66" start2="70" end2="73" changelist="f0a40668-9267-40a5-8352-c26fb13808bc" />
+        <range start1="71" end1="89" start2="78" end2="78" changelist="e351b304-3406-42f0-853d-db0f59743519" />
+      </ranges>
+    </file>
+  </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
@@ -78,11 +49,11 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;last_opened_file_path&quot;: &quot;D:/Elliot/django/Food Store/Food-Store&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "last_opened_file_path": "E:/IMDB-Clone-DRF"
   }
-}</component>
+}]]></component>
   <component name="RunManager">
     <configuration name="Food-Store" type="Python.DjangoServer" factoryName="Django server">
       <module name="Food-Store" />

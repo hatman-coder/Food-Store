@@ -5,7 +5,7 @@ from .models import *
 from .serializers import *
 from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
-from rest_framework.permissions import IsAuthenticated
+from rest_framework.permissions import IsAuthenticated, IsAdminUser
 from rest_framework.decorators import api_view
 from django.http.response import JsonResponse
 from rest_framework.views import APIView
@@ -14,6 +14,9 @@ from rest_framework.response import Response
 from django.db.models import Q
 from rest_framework import authentication, status
 from django.contrib.auth import authenticate, login
+from .permissions import AdminOrReadOnly
+
+
 
 class UserProfileViewSet(viewsets.ModelViewSet):
     queryset = UserProfile.objects.all()
@@ -33,6 +36,7 @@ class ProductViewset(viewsets.ModelViewSet):
 class CategoryViewset(viewsets.ModelViewSet):
     queryset = Category.objects.all()
     serializer_class = CategorySerializer
+    permission_classes = [AdminOrReadOnly]
 
 
 class OrderMasterViewset(viewsets.ModelViewSet):
@@ -64,26 +68,10 @@ class CategorizedAddOnsViewSet(APIView):
 
     def get(self, request, format=None):
         query_param= self.request.query_params.get('category')
+        # get token from header
+        # get user_Id from header
+        # check if the user has role to access this method
         addOns = AddOns.objects.filter(category=query_param)
         serializer = AddOnsSerializer(addOns, many=True)
         return Response(serializer.data)
 
-
-
-class LoginApi(APIView):
-    authentication_classes = (authentication.SessionAuthentication,)
-
-    def post(self, request, format=None):
-        # Get the user's credentials
-        email = request.data.get('email')
-        password = request.data.get('password')
-
-        # Attempt to authenticate the user
-        user = authenticate(request, email=email, password=password)
-
-        if user is not None:
-            # Log the user in
-            login(request, user)
-            return Response(status=status.HTTP_200_OK)
-        else:
-            return Response(status=status.HTTP_401_UNAUTHORIZED)
