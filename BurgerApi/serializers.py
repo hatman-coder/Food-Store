@@ -122,9 +122,7 @@ class OrderDetailSerializer(serializers.ModelSerializer):
         order_master_id = OrderMasterSerializer.create(OrderMasterSerializer(), validated_data=order_master_data)
         order_detail, created = OrderDetail.objects.update_or_create(
             order_master_id=order_master_id,
-            product_id=validated_data.pop('product_id'),
-            add_ons=validated_data.pop('add_ons'),
-            quantity=validated_data.pop('quantity')
+            product_id=validated_data.pop('product_id')
         )
         return order_detail
 

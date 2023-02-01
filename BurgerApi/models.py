@@ -104,6 +104,9 @@ class AddOns(models.Model):
 
 class CustomerDetail(models.Model):
     delivery_address = models.TextField(max_length=200, blank=True)
+    city = models.CharField(max_length=50, blank=True)
+    post_code = models.CharField(max_length=10, blank=True)
+    house_no = models.CharField(max_length=20, blank=True)
     contact_number = models.CharField(max_length=13, blank=True)
     user_id = models.ForeignKey(UserProfile, on_delete=models.CASCADE)
 
@@ -112,12 +115,12 @@ class CustomerDetail(models.Model):
 
 
 class OrderStatus(models.Model):
-    order_placed = models.CharField(max_length=100)
-    order_pending = models.CharField(max_length=100)
-    order_confirmed = models.CharField(max_length=100)
-    order_preparation_on_going = models.CharField(max_length=100)
-    out_for_delivery = models.CharField(max_length=100)
-    delivered = models.CharField(max_length=100)
+    order_placed = models.CharField(max_length=100, blank=True, null=True)
+    order_pending = models.CharField(max_length=100, blank=True, null=True)
+    order_confirmed = models.CharField(max_length=100, blank=True, null=True)
+    order_preparation_on_going = models.CharField(max_length=100, blank=True, null=True)
+    out_for_delivery = models.CharField(max_length=100, blank=True, null=True)
+    delivered = models.CharField(max_length=100, blank=True, null=True)
 
     def __str__(self):
         return str(self.order_confirmed)
@@ -133,7 +136,7 @@ class OrderMaster(models.Model):
     customer_detail = models.ForeignKey(CustomerDetail, on_delete=models.CASCADE)
     order_status = models.ForeignKey(OrderStatus, on_delete=models.CASCADE)
     payment_type = models.ForeignKey(PaymentType, on_delete=models.CASCADE)
-    payment_status = models.ForeignKey(PaymentStatus, on_delete=models.CASCADE, null=True, default=None)
+    payment_status = models.ForeignKey(PaymentStatus, on_delete=models.CASCADE, null=True, blank=True, default=None)
     total = models.CharField(max_length=100, null=True, blank=True)
     order_time = models.DateTimeField(auto_now_add=True)
     delivery_time = models.CharField(max_length=1000, editable=False)
@@ -144,9 +147,7 @@ class OrderMaster(models.Model):
 
 class OrderDetail(models.Model):
     order_master_id = models.ForeignKey(OrderMaster, on_delete=models.CASCADE)
-    product_id = models.ForeignKey(Product, on_delete=models.CASCADE)
-    add_ons = models.CharField(max_length=100, blank=True)
-    quantity = models.TextField(max_length=20, blank=True)
+    products = models.CharField(max_length=500, blank=True, null=True)
 
     def __str__(self):
         return str(self.order_master_id.order_no)
